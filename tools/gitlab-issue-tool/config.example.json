@@ -1,0 +1,8 @@
+{
+  "_comment": "Optional. Prefer the environment (.devenvironment/env.sh): GITLAB_BASE_URL, GITLAB_TOKEN, GITLAB_PROJECT_PATH/GITLAB_PROJECT_ID, GITLAB_DIR. Values here are overridden by the env vars.",
+  "base_url": "https://gitlab.example.org",
+  "token": "<insert your gitlab token here>",
+  "project_path": "group/project",
+  "project_id": "",
+  "gitlab_dir": "GITLAB"
+}

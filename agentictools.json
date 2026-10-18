@@ -1,0 +1,521 @@
+{
+  "name": "agentictools",
+  "version": "0.1.0",
+  "description": "Central collection of agentic rules, skills, prompts, hooks, custom agents, workflows, MCP integrations and tools.",
+  "home": "${AGENTICTOOLS_HOME}",
+  "profiles": {
+    "none": {},
+    "minimal": {
+      "rules": [
+        "00-agentictools-source-of-truth",
+        "05-docs-wiki",
+        "06-development-status",
+        "07-devenvironment",
+        "10-code-style"
+      ],
+      "skills": [],
+      "prompts": [],
+      "hooks": [],
+      "agents": [],
+      "workflows": [],
+      "mcp": [],
+      "tools": []
+    },
+    "recommended": {
+      "rules": [
+        "00-agentictools-source-of-truth",
+        "05-docs-wiki",
+        "06-development-status",
+        "07-devenvironment",
+        "10-code-style",
+        "20-git-workflow",
+        "30-security"
+      ],
+      "skills": [
+        "example-skill"
+      ],
+      "prompts": [
+        "code-review"
+      ],
+      "hooks": [
+        "shared-format"
+      ],
+      "agents": [
+        "code-reviewer"
+      ],
+      "workflows": [
+        "release"
+      ],
+      "mcp": [
+        "example-remote"
+      ],
+      "tools": [
+        "example-tool"
+      ]
+    },
+    "jira": {
+      "skills": [
+        "jira-issue"
+      ],
+      "tools": [
+        "jira-tool"
+      ]
+    },
+    "project-docs": {
+      "skills": [
+        "project-documentation"
+      ],
+      "tools": [
+        "project-documentation"
+      ]
+    },
+    "git-tools": {
+      "skills": [
+        "rebase-all-to-main"
+      ],
+      "tools": [
+        "rebase_all_to_main"
+      ]
+    },
+    "max": {
+      "rules": [
+        "00-agentictools-source-of-truth",
+        "05-docs-wiki",
+        "06-development-status",
+        "07-devenvironment",
+        "10-code-style",
+        "15-no-assumptions-ask-first",
+        "16-project-documentation",
+        "17-issue-workflow",
+        "20-git-workflow",
+        "30-security",
+        "18-docs-sync"
+      ],
+      "skills": [
+        "example-skill",
+        "issue-flow",
+        "issue-start",
+        "issue-refine",
+        "issue-implement",
+        "issue-mr",
+        "issue-merge",
+        "gitlab-issue",
+        "jira-issue",
+        "rebase-all-to-main",
+        "project-documentation"
+      ],
+      "prompts": [
+        "code-review"
+      ],
+      "hooks": [
+        "shared-format"
+      ],
+      "agents": [
+        "code-reviewer"
+      ],
+      "workflows": [
+        "release",
+        "issue"
+      ],
+      "mcp": [
+        "example-remote"
+      ],
+      "tools": [
+        "example-tool",
+        "gitlab-tool",
+        "gitlab-issue-tool",
+        "jira-tool",
+        "project-documentation",
+        "rebase_all_to_main"
+      ]
+    },
+    "gitlab-flow": {
+      "rules": [
+        "17-issue-workflow"
+      ],
+      "skills": [
+        "issue-flow",
+        "issue-start",
+        "issue-refine",
+        "issue-implement",
+        "issue-mr",
+        "issue-merge",
+        "gitlab-issue",
+        "project-documentation"
+      ],
+      "prompts": [],
+      "hooks": [],
+      "agents": [],
+      "workflows": [
+        "issue"
+      ],
+      "mcp": [],
+      "tools": [
+        "gitlab-tool",
+        "gitlab-issue-tool",
+        "project-documentation"
+      ]
+    }
+  },
+  "modules": {
+    "rules": {
+      "00-agentictools-source-of-truth": {
+        "path": "rules/00-agentictools-source-of-truth.md",
+        "tags": [
+          "core",
+          "always"
+        ],
+        "description": "Keep all agent configuration in the central repo; projects only reference it."
+      },
+      "05-docs-wiki": {
+        "path": "rules/05-docs-wiki.md",
+        "tags": [
+          "core",
+          "always",
+          "docs"
+        ],
+        "description": "Mandatory docs/wiki GitLab wiki clone: documentation root, table of contents, auto commit and push."
+      },
+      "06-development-status": {
+        "path": "rules/06-development-status.md",
+        "tags": [
+          "core",
+          "always",
+          "docs"
+        ],
+        "description": "DEVELOPMENT-STATUS.md decision log and diary; record non-obvious decisions in the same change-set."
+      },
+      "07-devenvironment": {
+        "path": "rules/07-devenvironment.md",
+        "tags": [
+          "core",
+          "always",
+          "env"
+        ],
+        "description": "Load .devenvironment/env.sh before any build/setup; add keys with the '<insert your .... here>' placeholder."
+      },
+      "10-code-style": {
+        "path": "rules/10-code-style.md",
+        "tags": [
+          "core",
+          "style"
+        ],
+        "description": "General code style and editing conventions."
+      },
+      "20-git-workflow": {
+        "path": "rules/20-git-workflow.md",
+        "tags": [
+          "git"
+        ],
+        "description": "Branching, commit and PR conventions."
+      },
+      "30-security": {
+        "path": "rules/30-security.md",
+        "tags": [
+          "security"
+        ],
+        "description": "Never leak secrets, validate inputs, least privilege."
+      },
+      "15-no-assumptions-ask-first": {
+        "path": "rules/15-no-assumptions-ask-first.md",
+        "tags": [
+          "process"
+        ],
+        "description": "Do not assume; ask on uncertainty and surface safe assumptions."
+      },
+      "16-project-documentation": {
+        "path": "rules/16-project-documentation.md",
+        "tags": [
+          "core",
+          "always",
+          "docs"
+        ],
+        "description": "Update docs/project/ architectural documentation before creating the MR; separate from docs/wiki."
+      },
+      "17-issue-workflow": {
+        "path": "rules/17-issue-workflow.md",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Optional GitLab issue workflow: one issue/branch/MR, chat-to-issue mirroring, status labels, review gate."
+      },
+      "18-docs-sync": {
+        "path": "rules/18-docs-sync.md",
+        "tags": [
+          "core",
+          "docs"
+        ],
+        "description": "Documentation duty: update README/usage/build/man/wiki in the same change-set as any user-facing change."
+      }
+    },
+    "skills": {
+      "example-skill": {
+        "path": "skills/example-skill",
+        "tags": [
+          "example"
+        ],
+        "description": "Template skill showing the SKILL.md layout."
+      },
+      "jira-issue": {
+        "path": "skills/jira-issue",
+        "tags": [
+          "jira",
+          "analysis"
+        ],
+        "description": "Fetch/refresh a Jira issue into JIRA/<KEY>/ for local analysis.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "gitlab-issue": {
+        "path": "skills/gitlab-issue",
+        "tags": [
+          "gitlab",
+          "analysis"
+        ],
+        "description": "Download/refresh a GitLab issue into GITLAB/<project>/<iid>/ for local analysis.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "rebase-all-to-main": {
+        "path": "skills/rebase-all-to-main",
+        "tags": [
+          "git",
+          "housekeeping"
+        ],
+        "description": "Sync a configured list of local repos with their remote branches.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "project-documentation": {
+        "path": "skills/project-documentation",
+        "tags": [
+          "docs",
+          "analysis"
+        ],
+        "description": "Generate/update architectural docs under docs/project/ and render Mermaid/PlantUML.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "issue-flow": {
+        "path": "skills/issue-flow",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Orchestrate the optional GitLab issue workflow (state, resume, mirroring, dispatch).",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "issue-start": {
+        "path": "skills/issue-start",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Confirm and create a new issue, branch, and initial understanding/AC comment.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "issue-refine": {
+        "path": "skills/issue-refine",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Conversational refinement loop with chat-to-issue mirroring; finalizes spec and AC.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "issue-implement": {
+        "path": "skills/issue-implement",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Implement on the issue branch; completion comment maps acceptance criteria; review gate.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "issue-mr": {
+        "path": "skills/issue-mr",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Update project docs (rule 16) and create the MR idempotently.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      },
+      "issue-merge": {
+        "path": "skills/issue-merge",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Merge the MR (squash, remove branch), clean up and close out the issue.",
+        "targets": [
+          "claude",
+          "opencode",
+          "antigravity"
+        ]
+      }
+    },
+    "prompts": {
+      "code-review": {
+        "path": "prompts/code-review.md",
+        "tags": [
+          "review"
+        ],
+        "description": "Structured code review prompt."
+      }
+    },
+    "hooks": {
+      "shared-format": {
+        "path": "hooks/shared/format.sh",
+        "tags": [
+          "format"
+        ],
+        "description": "Run the project formatter after edits.",
+        "targets": [
+          "claude",
+          "opencode"
+        ]
+      }
+    },
+    "agents": {
+      "code-reviewer": {
+        "path": "agents",
+        "tags": [
+          "review"
+        ],
+        "description": "Read-only reviewer subagent.",
+        "targets": [
+          "claude",
+          "opencode"
+        ]
+      }
+    },
+    "workflows": {
+      "release": {
+        "path": "workflows/release.md",
+        "tags": [
+          "release"
+        ],
+        "description": "Cut a release: bump, changelog, tag, publish.",
+        "targets": [
+          "antigravity",
+          "opencode",
+          "claude"
+        ]
+      },
+      "issue": {
+        "path": "workflows/issue.md",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Slash command driving the optional GitLab issue workflow.",
+        "targets": [
+          "antigravity",
+          "opencode",
+          "claude"
+        ]
+      }
+    },
+    "mcp": {
+      "example-remote": {
+        "path": "mcp/servers.json",
+        "key": "example-remote",
+        "tags": [
+          "example"
+        ],
+        "description": "Example remote MCP server (replace with a real one).",
+        "targets": [
+          "claude",
+          "opencode",
+          "codex"
+        ]
+      }
+    },
+    "tools": {
+      "example-tool": {
+        "path": "tools/example-tool.ts",
+        "tags": [
+          "example"
+        ],
+        "description": "Template custom opencode tool.",
+        "targets": [
+          "opencode"
+        ]
+      },
+      "jira-tool": {
+        "path": "tools/jira-tool",
+        "tags": [
+          "jira",
+          "analysis"
+        ],
+        "description": "Fetch Jira Cloud issues locally (jira-issue skill); creds via .devenvironment."
+      },
+      "gitlab-issue-tool": {
+        "path": "tools/gitlab-issue-tool",
+        "tags": [
+          "gitlab",
+          "analysis"
+        ],
+        "description": "Download GitLab issues (description, comments, attachments) locally (gitlab-issue skill); creds via .devenvironment."
+      },
+      "project-documentation": {
+        "path": "tools/project-documentation",
+        "tags": [
+          "docs",
+          "analysis"
+        ],
+        "description": "Architectural docs under docs/project/ (project-documentation skill); Mermaid + PlantUML."
+      },
+      "rebase_all_to_main": {
+        "path": "tools/rebase_all_to_main",
+        "tags": [
+          "git",
+          "housekeeping"
+        ],
+        "description": "Keep many local repos in sync with their remotes (rebase-all-to-main skill)."
+      },
+      "gitlab-tool": {
+        "path": "tools/gitlab-tool",
+        "tags": [
+          "gitlab",
+          "workflow"
+        ],
+        "description": "Robust GitLab CLI (Python): issues, merge requests and labels; encoded project paths, idempotent MR create, safe merge."
+      }
+    }
+  }
+}

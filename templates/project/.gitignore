@@ -1,0 +1,23 @@
+# agentictools generated artifacts (recreate with scripts/sync.sh)
+.agentictools/
+.mcp.json
+.claude/settings.local.json
+.claude/skills/
+.claude/agents/
+.claude/commands/
+.opencode/skill/
+.opencode/agent/
+.opencode/command/
+.opencode/plugin/
+.opencode/tool/
+.opencode/opencode.json
+.codex/prompts/
+.agents/skills/
+.agents/workflows/
+.agents/mcp_config.json
+
+# real environment values (see rule 07-devenvironment)
+.devenvironment/env.local.sh
+
+# the project wiki is its own git repository (see rule 05-docs-wiki)
+docs/wiki/

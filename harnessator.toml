@@ -1,0 +1,247 @@
+kind = "source"
+schema = 1
+
+# harnessator source manifest - the canonical registry (replaces agentictools.json).
+# agentictools.json + scripts/sync.sh stay as the legacy shim until harnessator
+# setup is rolled out to every consuming project; keep the two in sync until then.
+
+[package]
+name = "agentictools"
+description = "Central collection of agentic rules, skills, prompts, hooks, custom agents, workflows, MCP integrations and tools."
+version = "0.1.0"
+homepage = "https://github.com/aignerdevelopment/agentictools"
+license = "MIT"
+
+[profiles."none"]
+
+[profiles."minimal"]
+rule = ["00-agentictools-source-of-truth", "05-docs-wiki", "06-development-status", "07-devenvironment", "10-code-style"]
+
+[profiles."recommended"]
+rule = ["00-agentictools-source-of-truth", "05-docs-wiki", "06-development-status", "07-devenvironment", "10-code-style", "20-git-workflow", "30-security"]
+skill = ["example-skill"]
+prompt = ["code-review"]
+hook = ["shared-format"]
+agent = ["code-reviewer"]
+workflow = ["release"]
+mcp = ["example-remote"]
+tool = ["example-tool"]
+
+[profiles."jira"]
+skill = ["jira-issue"]
+tool = ["jira-tool"]
+
+[profiles."project-docs"]
+skill = ["project-documentation"]
+tool = ["project-documentation"]
+
+[profiles."git-tools"]
+skill = ["rebase-all-to-main"]
+tool = ["rebase_all_to_main"]
+
+[profiles."max"]
+rule = ["00-agentictools-source-of-truth", "05-docs-wiki", "06-development-status", "07-devenvironment", "10-code-style", "15-no-assumptions-ask-first", "16-project-documentation", "17-issue-workflow", "18-docs-sync", "20-git-workflow", "30-security"]
+skill = ["example-skill", "issue-flow", "issue-start", "issue-refine", "issue-implement", "issue-mr", "issue-merge", "gitlab-issue", "jira-issue", "rebase-all-to-main", "project-documentation"]
+prompt = ["code-review"]
+hook = ["shared-format"]
+agent = ["code-reviewer"]
+workflow = ["release", "issue"]
+mcp = ["example-remote"]
+tool = ["example-tool", "gitlab-tool", "gitlab-issue-tool", "jira-tool", "project-documentation", "rebase_all_to_main"]
+
+[profiles."gitlab-flow"]
+rule = ["17-issue-workflow"]
+skill = ["issue-flow", "issue-start", "issue-refine", "issue-implement", "issue-mr", "issue-merge", "gitlab-issue", "project-documentation"]
+workflow = ["issue"]
+tool = ["gitlab-tool", "gitlab-issue-tool", "project-documentation"]
+
+[component.rule."00-agentictools-source-of-truth"]
+path = "rules/00-agentictools-source-of-truth.md"
+description = "Keep all agent configuration in the central repo; projects only reference it."
+tags = ["core", "always"]
+always = true
+
+[component.rule."05-docs-wiki"]
+path = "rules/05-docs-wiki.md"
+description = "Mandatory docs/wiki GitLab wiki clone: documentation root, table of contents, auto commit and push."
+tags = ["core", "always", "docs"]
+always = true
+
+[component.rule."06-development-status"]
+path = "rules/06-development-status.md"
+description = "DEVELOPMENT-STATUS.md decision log and diary; record non-obvious decisions in the same change-set."
+tags = ["core", "always", "docs"]
+always = true
+
+[component.rule."07-devenvironment"]
+path = "rules/07-devenvironment.md"
+description = "Load .devenvironment/env.sh before any build/setup; add keys with the '<insert your .... here>' placeholder."
+tags = ["core", "always", "env"]
+always = true
+
+[component.rule."10-code-style"]
+path = "rules/10-code-style.md"
+description = "General code style and editing conventions."
+tags = ["core", "style"]
+
+[component.rule."20-git-workflow"]
+path = "rules/20-git-workflow.md"
+description = "Branching, commit and PR conventions."
+tags = ["git"]
+
+[component.rule."30-security"]
+path = "rules/30-security.md"
+description = "Never leak secrets, validate inputs, least privilege."
+tags = ["security"]
+
+[component.rule."15-no-assumptions-ask-first"]
+path = "rules/15-no-assumptions-ask-first.md"
+description = "Do not assume; ask on uncertainty and surface safe assumptions."
+tags = ["process"]
+
+[component.rule."16-project-documentation"]
+path = "rules/16-project-documentation.md"
+description = "Update docs/project/ architectural documentation before creating the MR; separate from docs/wiki."
+tags = ["core", "always", "docs"]
+always = true
+
+[component.rule."17-issue-workflow"]
+path = "rules/17-issue-workflow.md"
+description = "Optional GitLab issue workflow: one issue/branch/MR, chat-to-issue mirroring, status labels, review gate."
+tags = ["gitlab", "workflow"]
+
+[component.skill."example-skill"]
+path = "skills/example-skill"
+description = "Template skill showing the SKILL.md layout."
+tags = ["example"]
+
+[component.skill."jira-issue"]
+path = "skills/jira-issue"
+description = "Fetch/refresh a Jira issue into JIRA/<KEY>/ for local analysis."
+tags = ["jira", "analysis"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."gitlab-issue"]
+path = "skills/gitlab-issue"
+description = "Download/refresh a GitLab issue into GITLAB/<project>/<iid>/ for local analysis."
+tags = ["gitlab", "analysis"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."rebase-all-to-main"]
+path = "skills/rebase-all-to-main"
+description = "Sync a configured list of local repos with their remote branches."
+tags = ["git", "housekeeping"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."project-documentation"]
+path = "skills/project-documentation"
+description = "Generate/update architectural docs under docs/project/ and render Mermaid/PlantUML."
+tags = ["docs", "analysis"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."issue-flow"]
+path = "skills/issue-flow"
+description = "Orchestrate the optional GitLab issue workflow (state, resume, mirroring, dispatch)."
+tags = ["gitlab", "workflow"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."issue-start"]
+path = "skills/issue-start"
+description = "Confirm and create a new issue, branch, and initial understanding/AC comment."
+tags = ["gitlab", "workflow"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."issue-refine"]
+path = "skills/issue-refine"
+description = "Conversational refinement loop with chat-to-issue mirroring; finalizes spec and AC."
+tags = ["gitlab", "workflow"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."issue-implement"]
+path = "skills/issue-implement"
+description = "Implement on the issue branch; completion comment maps acceptance criteria; review gate."
+tags = ["gitlab", "workflow"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."issue-mr"]
+path = "skills/issue-mr"
+description = "Update project docs (rule 16) and create the MR idempotently."
+tags = ["gitlab", "workflow"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.skill."issue-merge"]
+path = "skills/issue-merge"
+description = "Merge the MR (squash, remove branch), clean up and close out the issue."
+tags = ["gitlab", "workflow"]
+targets = ["claude", "opencode", "antigravity"]
+
+[component.prompt."code-review"]
+path = "prompts/code-review.md"
+description = "Structured code review prompt."
+tags = ["review"]
+
+[component.hook."shared-format"]
+path = "hooks/shared/format.sh"
+description = "Run the project formatter after edits."
+tags = ["format"]
+targets = ["claude", "opencode"]
+
+[component.agent."code-reviewer"]
+path = "agents"
+description = "Read-only reviewer subagent."
+tags = ["review"]
+targets = ["claude", "opencode"]
+
+[component.workflow."release"]
+path = "workflows/release.md"
+description = "Cut a release: bump, changelog, tag, publish."
+tags = ["release"]
+targets = ["antigravity", "opencode", "claude"]
+
+[component.workflow."issue"]
+path = "workflows/issue.md"
+description = "Slash command driving the optional GitLab issue workflow."
+tags = ["gitlab", "workflow"]
+targets = ["antigravity", "opencode", "claude"]
+
+[component.mcp."example-remote"]
+path = "mcp/servers.json"
+key = "example-remote"
+description = "Example remote MCP server (replace with a real one)."
+tags = ["example"]
+targets = ["claude", "opencode", "codex"]
+
+[component.tool."example-tool"]
+path = "tools/example-tool.ts"
+description = "Template custom opencode tool."
+tags = ["example"]
+targets = ["opencode"]
+
+[component.tool."jira-tool"]
+path = "tools/jira-tool"
+description = "Fetch Jira Cloud issues locally (jira-issue skill); creds via .devenvironment."
+tags = ["jira", "analysis"]
+
+[component.tool."gitlab-issue-tool"]
+path = "tools/gitlab-issue-tool"
+description = "Download GitLab issues (description, comments, attachments) locally (gitlab-issue skill); creds via .devenvironment."
+tags = ["gitlab", "analysis"]
+
+[component.tool."project-documentation"]
+path = "tools/project-documentation"
+description = "Architectural docs under docs/project/ (project-documentation skill); Mermaid + PlantUML."
+tags = ["docs", "analysis"]
+
+[component.tool."rebase_all_to_main"]
+path = "tools/rebase_all_to_main"
+description = "Keep many local repos in sync with their remotes (rebase-all-to-main skill)."
+tags = ["git", "housekeeping"]
+
+[component.tool."gitlab-tool"]
+path = "tools/gitlab-tool"
+description = "Robust GitLab CLI (Python): issues, merge requests and labels; encoded project paths, idempotent MR create, safe merge."
+tags = ["gitlab", "workflow"]
+[component.rule."18-docs-sync"]
+path = "rules/18-docs-sync.md"
+description = "Documentation duty: update README/usage/build/man/wiki in the same change-set as any user-facing change."
+tags = ["core", "docs"]

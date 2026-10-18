@@ -1,0 +1,46 @@
+{
+  "servers": {
+    "example-remote": {
+      "description": "Example remote MCP server. Replace with a real endpoint.",
+      "targets": ["claude", "opencode", "codex", "antigravity"],
+      "config": {
+        "claude": {
+          "type": "http",
+          "url": "https://example.com/mcp"
+        },
+        "opencode": {
+          "type": "remote",
+          "url": "https://example.com/mcp",
+          "enabled": true
+        },
+        "codex": {
+          "command": "npx",
+          "args": ["-y", "example-mcp"]
+        },
+        "antigravity": {
+          "serverUrl": "https://example.com/mcp"
+        }
+      }
+    },
+    "example-local": {
+      "description": "Example local (stdio) MCP server. Replace with a real command.",
+      "targets": ["claude", "opencode", "codex"],
+      "config": {
+        "claude": {
+          "command": "npx",
+          "args": ["-y", "example-mcp"]
+        },
+        "opencode": {
+          "type": "local",
+          "command": ["npx", "-y", "example-mcp"],
+          "enabled": true,
+          "environment": {}
+        },
+        "codex": {
+          "command": "npx",
+          "args": ["-y", "example-mcp"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "_comment": "Copy this file to config.json and fill in your Jira Cloud credentials. Never commit config.json.",
+
+  "base_url": "https://yourorg.atlassian.net",
+  "email": "you@example.com",
+  "api_token": "",
+
+  "jira_dir": "../../JIRA",
+
+  "fields": {
+    "analysis_field_name": "Analysis",
+    "workaround_field_name": "Workaround",
+    "extra_fields": {
+      "product_description": "Product Description",
+      "requires_documentation": "Requires documentation",
+      "severity": "Severity",
+      "found_in_version": "Found in Version",
+      "customer_project": "Customerproject",
+      "reaction_until": "Reaction until",
+      "reacted_date": "Reacted date",
+      "fixed_in_build": "Fixed in build",
+      "third_party_tracker_id": "3rd party tracker id"
+    }
+  }
+}

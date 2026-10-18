@@ -1,0 +1,72 @@
+# {{PROJECT_NAME}} — Technology Stack
+
+**Parent:** [{{PROJECT_NAME}}](index.md)
+**Machine-readable:** [techstack.yaml](techstack.yaml)
+
+## Runtime Platform
+
+| Technology | Version | Role |
+|---|---|---|
+| {{LANGUAGE}} | {{VERSION}} | Primary language and runtime |
+| {{FRAMEWORK}} | {{VERSION}} | Application framework |
+
+## Data Persistence
+
+| Technology | Version | Purpose |
+|---|---|---|
+| {{DATABASE}} | {{VERSION}} | Primary persistent store |
+| {{ORM}} | {{VERSION}} | Object-relational mapping |
+
+## Messaging and Eventing
+
+| Technology | Version | Purpose |
+|---|---|---|
+| {{MESSAGING}} | {{VERSION}} | Async communication |
+
+## API and Client Generation
+
+| Technology | Version | Purpose |
+|---|---|---|
+| {{API_TOOL}} | {{VERSION}} | API documentation/clients |
+
+## Shared Libraries
+
+| Package | Version | Role |
+|---|---|---|
+| {{LIBRARY}} | {{VERSION}} | Shared functionality |
+
+## Observability
+
+| Technology | Role |
+|---|---|
+| {{LOGGING}} | Structured logging |
+| {{TRACING}} | Distributed tracing |
+| {{METRICS}} | Metrics collection |
+
+## Testing
+
+| Technology | Version | Role |
+|---|---|---|
+| {{TEST_FRAMEWORK}} | {{VERSION}} | Unit/integration testing |
+
+## CI/CD
+
+| Stage | Description |
+|---|---|
+| {{STAGE}} | {{DESCRIPTION}} |
+
+## Container and Networking
+
+| Aspect | Value |
+|---|---|
+| {{ASPECT}} | {{VALUE}} |
+
+## Version Constraints
+
+- **{{CONSTRAINT}}** — {{EXPLANATION}}
+
+> **Why:** {{RATIONALE}}
+
+---
+
+*See [techstack.yaml](techstack.yaml) for machine-readable format.*

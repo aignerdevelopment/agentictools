@@ -1,0 +1,104 @@
+{
+  "_comment": "Configuration for project_docs.py (project-documentation skill). Copy to config.json in this directory and replace the projects list with your own repos. root_dir is relative to the current working directory (run from the repo root), so '.' is correct.",
+
+  "root_dir": ".",
+  "doc_branch": "docs",
+  "main_branch_default": "main",
+
+  "documentation": {
+    "source_dir": "docs/project",
+    "diagrams_dir": "docs/project/diagrams",
+    "output_format": "markdown",
+    "include_yaml_companion": true,
+    "include_diagrams": true
+  },
+
+  "projects": [
+    {
+      "directory": "your-project-1",
+      "main_branch": "main",
+      "doc_branch": "docs",
+      "type": "dotnet-service",
+      "description": "Your project description"
+    },
+    {
+      "directory": "your-project-2",
+      "main_branch": "master",
+      "doc_branch": "docs",
+      "type": "angular-frontend",
+      "description": "Another project"
+    }
+  ],
+
+  "documentation_standard": {
+    "required_files": [
+      "index.md",
+      "techstack.md",
+      "techstack.yaml",
+      "project-summary.md",
+      "architecture.md",
+      "api-reference.md",
+      "api-reference.yaml",
+      "domain-model.md",
+      "domain-model.yaml",
+      "configuration.md",
+      "configuration.yaml",
+      "design-decisions.md",
+      "integration-guide.md"
+    ],
+    "optional_files": [
+      "messaging.md",
+      "messaging.yaml",
+      "protocols.md",
+      "protocols.yaml"
+    ],
+    "diagram_files": [
+      "arch-01-context.mmd",
+      "arch-02-container.mmd",
+      "arch-03-component.mmd",
+      "domain-01-model.mmd",
+      "messaging-01-flow.mmd"
+    ]
+  },
+
+  "prompt_template": {
+    "base_prompt": "docs/DOCUMENTATION-GUIDELINES.md"
+  },
+
+  "behavior": {
+    "auto_switch_branch": false,
+    "create_branch_if_missing": false,
+    "verify_branch_exists": false,
+    "commit_message_template": "docs: update architectural documentation under docs/project",
+    "check_existing_docs": true,
+    "preserve_existing": true,
+    "force_update": false
+  },
+
+  "diagrams": {
+    "mermaid": {
+      "enabled": true,
+      "render_to_png": true,
+      "config_file": "docs/project/diagrams/mermaid.config.json",
+      "puppeteer_config": "docs/project/diagrams/.puppeteer.json",
+      "default_width": 2400,
+      "default_height": 1600
+    },
+    "plantuml": {
+      "enabled": true,
+      "render_via_kroki": true,
+      "kroki_url": "https://kroki.io/plantuml/png"
+    }
+  },
+
+  "excluded_paths": [
+    "**/node_modules/**",
+    "**/bin/**",
+    "**/obj/**",
+    "**/target/**",
+    "**/build/**",
+    "**/.git/**",
+    "**/docs/wiki/**",
+    "**/docs/project/diagrams/**"
+  ]
+}

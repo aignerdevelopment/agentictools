@@ -1,0 +1,20 @@
+{
+  "$schema": "{{AGENTICTOOLS_HOME}}/agentictools.schema.json",
+  "agentictoolsHome": "{{AGENTICTOOLS_HOME}}",
+  "profile": "minimal",
+
+  "rules": { "include": [], "exclude": [] },
+  "skills": { "include": [], "exclude": [] },
+  "prompts": { "include": [], "exclude": [] },
+  "hooks": { "include": [], "exclude": [] },
+  "agents": { "include": [], "exclude": [] },
+  "workflows": { "include": [], "exclude": [] },
+  "mcp": { "include": [], "exclude": [] },
+  "tools": { "include": [], "exclude": [] },
+
+  "options": {
+    "maxRules": 8,
+    "syncGeneratedDirs": true,
+    "targets": ["opencode", "claude", "codex", "antigravity"]
+  }
+}

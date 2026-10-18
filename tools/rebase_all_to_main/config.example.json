@@ -1,0 +1,20 @@
+{
+  "_comment": "Configuration for rebase_all_to_main.py. Copy to config.json in this directory and replace the projects list with your own repos. NOTE: root_dir is relative to THIS config file's location, so '../../..' points at the project root.",
+
+  "root_dir": "../../..",
+  "doc_branch": "docs",
+
+  "projects": [
+    {"directory": "your-project-1", "main_branch": "main"},
+    {"directory": "your-project-2", "main_branch": "master"},
+    {"directory": "your-project-3", "main_branch": "main", "doc_branch": "docs"}
+  ],
+
+  "behavior": {
+    "auto_stash": true,
+    "stash_include_untracked": true,
+    "abort_rebase_on_conflict": true,
+    "keep_stash_on_pop_conflict": true,
+    "exit_on_first_failure": false
+  }
+}

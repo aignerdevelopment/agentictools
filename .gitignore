@@ -1,0 +1,24 @@
+# Local, machine-specific overrides
+agentictools.local.json
+.agentictools/
+
+# Generated, machine-specific agent artifacts (recreate with scripts/sync.sh)
+.mcp.json
+.claude/settings.local.json
+
+# Real environment values are machine-specific and must never be committed
+.devenvironment/env.local.sh
+
+# The project wiki is its own git repository (see rules/05-docs-wiki.md)
+docs/wiki/
+
+# Scratch/migration area; do not commit
+_tmp/
+
+# OS / editor
+.DS_Store
+*.swp
+
+# Python bytecode
+__pycache__/
+*.pyc

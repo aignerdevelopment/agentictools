@@ -1,0 +1,57 @@
+# {{PROJECT_NAME}} — Project Documentation
+
+## Overview
+
+**{{PROJECT_NAME}}** is a {{PROJECT_TYPE}} that {{PROJECT_DESCRIPTION}}.
+
+> **Business purpose:** [Insert business purpose here]
+
+> **Technical purpose:** [Insert technical purpose here]
+
+## Project Information
+
+| Attribute | Value |
+|-----------|-------|
+| Type | {{PROJECT_TYPE}} |
+| Main Branch | {{MAIN_BRANCH}} |
+| Documentation Branch | {{DOC_BRANCH}} |
+| Path | `{{PROJECT_PATH}}` |
+
+## Quick Links
+
+| Resource | Link |
+|---|---|
+| Technology Stack | [techstack.md](techstack.md) + [techstack.yaml](techstack.yaml) |
+| Project Summary | [project-summary.md](project-summary.md) |
+| Architecture | [architecture.md](architecture.md) |
+| API Reference | [api-reference.md](api-reference.md) + [api-reference.yaml](api-reference.yaml) |
+| Domain Model | [domain-model.md](domain-model.md) + [domain-model.yaml](domain-model.yaml) |
+| Configuration | [configuration.md](configuration.md) + [configuration.yaml](configuration.yaml) |
+| Design Decisions | [design-decisions.md](design-decisions.md) |
+| Integration Guide | [integration-guide.md](integration-guide.md) |
+
+## Repository Layout
+
+```
+{{PROJECT_NAME}}/
+├── docs/                          # Documentation
+│   └── projects/
+│       └── {{PROJECT_NAME}}/
+│           ├── index.md           # This file
+│           ├── techstack.md       # Technology inventory
+│           ├── project-summary.md # Business context
+│           └── ...                # Other documentation
+├── src/                           # Source code
+├── tests/                         # Test projects
+└── README.md                      # Quick start
+```
+
+## Related Documentation
+
+- [System Architecture](../../system-architecture.md)
+- [Tech Stack Matrix](../../techstack.md)
+- [Glossary](../../glossary.md)
+
+---
+
+*This documentation follows the [overall-documentation-prompt.md](../../overall-documentation-prompt.md) standard.*

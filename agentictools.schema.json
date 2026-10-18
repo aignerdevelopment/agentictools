@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "agentictools project configuration",
+  "description": "Checked into each consuming project root as agentictools.config.json. Selects which central modules the agents should load.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "agentictoolsHome": {
+      "type": "string",
+      "description": "Path to the central agentictools repo. The AGENTICTOOLS_HOME environment variable wins if set."
+    },
+    "profile": {
+      "type": "string",
+      "default": "minimal",
+      "description": "Base preset defined in the central agentictools.json."
+    },
+    "rules": { "$ref": "#/definitions/selection" },
+    "skills": { "$ref": "#/definitions/selection" },
+    "prompts": { "$ref": "#/definitions/selection" },
+    "hooks": { "$ref": "#/definitions/selection" },
+    "agents": { "$ref": "#/definitions/selection" },
+    "workflows": { "$ref": "#/definitions/selection" },
+    "mcp": { "$ref": "#/definitions/selection" },
+    "tools": { "$ref": "#/definitions/selection" },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxRules": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "Maximum number of rule files to load. 0 = unlimited."
+        },
+        "syncGeneratedDirs": {
+          "type": "boolean",
+          "default": true,
+          "description": "Create per-agent symlinks/dirs for enabled modules."
+        },
+        "targets": {
+          "type": "array",
+          "description": "Limit which agents get generated artifacts. Omit for all.",
+          "items": {
+            "type": "string",
+            "enum": ["claude", "opencode", "codex", "antigravity"]
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "include": {
+          "type": "array",
+          "description": "Module ids to enable. Use \"*\" for all.",
+          "items": { "type": "string" }
+        },
+        "exclude": {
+          "type": "array",
+          "description": "Module ids to disable, applied after include/profile.",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
