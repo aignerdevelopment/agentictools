@@ -14,6 +14,7 @@ the Terraform-for-AI-coding-agents tool this corpus dogfoods:
 - workflows
 - MCP integrations
 - tools
+- providers & model policies (governance)
 
 Projects do **not** keep their own copies. They keep a tiny, checked-in
 configuration plus redirect files that point at this repo. Only the modules a

@@ -8,7 +8,7 @@ schema = 1
 [package]
 name = "agentictools"
 description = "Central collection of agentic rules, skills, prompts, hooks, custom agents, workflows, MCP integrations and tools."
-version = "0.1.0"
+version = "0.2.0"
 homepage = "https://github.com/aignerdevelopment/agentictools"
 license = "MIT"
 
@@ -245,3 +245,13 @@ tags = ["gitlab", "workflow"]
 path = "rules/18-docs-sync.md"
 description = "Documentation duty: update README/usage/build/man/wiki in the same change-set as any user-facing change."
 tags = ["core", "docs"]
+
+[component.provider."litellm-demo"]
+path = "providers/litellm-demo.toml"
+description = "Example LiteLLM-style gateway profile: approved model catalog + endpoints per API family (a template to copy)."
+tags = ["governance", "example"]
+
+[component.policy."models-strict"]
+path = "policies/models-strict.toml"
+description = "Example model policy: strict allow-list over the selected provider catalog, with sub-agent pinning."
+tags = ["governance", "example"]

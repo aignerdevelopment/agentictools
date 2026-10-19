@@ -1,0 +1,8 @@
+# Example model policy: the approved subset of the selected provider's
+# catalog. Strict by default - setup fails on selections outside it, and
+# relaxation happens only through an explicit higher-layer policy.
+
+reason         = "team-approved models (demo catalog)"
+strict         = true
+allowed        = ["big", "smart"]
+subagent_model = "big"

@@ -1,6 +1,6 @@
 {
   "name": "agentictools",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Central collection of agentic rules, skills, prompts, hooks, custom agents, workflows, MCP integrations and tools.",
   "home": "${AGENTICTOOLS_HOME}",
   "profiles": {
@@ -515,6 +515,26 @@
           "workflow"
         ],
         "description": "Robust GitLab CLI (Python): issues, merge requests and labels; encoded project paths, idempotent MR create, safe merge."
+      }
+    },
+    "providers": {
+      "litellm-demo": {
+        "path": "providers/litellm-demo.toml",
+        "tags": [
+          "governance",
+          "example"
+        ],
+        "description": "Example LiteLLM-style gateway profile: approved model catalog + endpoints per API family (a template to copy)."
+      }
+    },
+    "policies": {
+      "models-strict": {
+        "path": "policies/models-strict.toml",
+        "tags": [
+          "governance",
+          "example"
+        ],
+        "description": "Example model policy: strict allow-list over the selected provider catalog, with sub-agent pinning."
       }
     }
   }
